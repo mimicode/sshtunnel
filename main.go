@@ -197,6 +197,7 @@ var (
 )
 
 func main() {
+	flag.Parse()
 	var sts []SSHTunnel
 	var p = *confing
 	log.Printf("使用配置文件 %s", p)
