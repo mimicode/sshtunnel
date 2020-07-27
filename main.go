@@ -193,23 +193,34 @@ func (st SSHTunnel) transfer(lc net.Conn, rc net.Conn, t Tunnel) {
 }
 
 var (
-	confing = flag.String("c","/etc/sshtunnel/config.json","配置文件位置")
+	config = flag.String("c", "/etc/sshtunnel/config.json", "配置文件位置")
+	node   = flag.String("n", "default", "启用节点")
 )
 
 func main() {
 	flag.Parse()
 	var sts []SSHTunnel
-	var p = *confing
+	var p = *config
 	log.Printf("使用配置文件 %s", p)
 	f, err := ioutil.ReadFile(p)
 	if err != nil {
 		log.Printf(`载入配置文件出错: %s`, err)
 		os.Exit(-1)
 	}
-	err = json.Unmarshal(f, &sts)
+
+	var allStas map[string][]SSHTunnel
+	err = json.Unmarshal(f, &allStas)
 	if nil != err {
 		log.Printf(`解析配置文件内容出错: %s`, err)
 		os.Exit(-1)
+	}
+
+	for s, tunnels := range allStas {
+		if *node == "all" {
+			sts = append(sts, tunnels...)
+		} else if *node == s {
+			sts = append(sts, tunnels...)
+		}
 	}
 
 	var wg sync.WaitGroup

@@ -1,18 +1,56 @@
-[
-  {
-    "addr": "192.168.1.10:2222",
-    "user": "root",
-    "pass": "",
-    "name": "其它服务器",
-    "identity_file": "~/.ssh/id_rsa",
-    "open": true,
-    "tunnels": [
-      {
-        "remote": "127.0.0.1:5432",
-        "local": "127.0.0.1:5432",
-        "open": true,
-        "name": "progsql"
-      }
-    ]
-  }
-]
+{
+  "default": [
+    {
+      "addr": "192.168.1.10:2222",
+      "user": "root",
+      "pass": "",
+      "name": "其它服务器",
+      "identity_file": "~/.ssh/id_rsa",
+      "open": true,
+      "tunnels": [
+        {
+          "remote": "127.0.0.1:5432",
+          "local": "127.0.0.1:5432",
+          "open": true,
+          "name": "progsql"
+        }
+      ]
+    }
+  ],
+  "work":[
+    {
+      "addr": "192.168.1.10:2222",
+      "user": "root",
+      "pass": "",
+      "name": "工作k8s",
+      "identity_file": "~/.ssh/id_rsa",
+      "open": true,
+      "tunnels": [
+        {
+          "remote": "127.0.0.1:5432",
+          "local": "127.0.0.1:5432",
+          "open": true,
+          "name": "progsql"
+        }
+      ]
+    }
+  ],
+  "myserver":[
+    {
+      "addr": "192.168.1.10:2222",
+      "user": "root",
+      "pass": "",
+      "name": "学习",
+      "identity_file": "~/.ssh/id_rsa",
+      "open": true,
+      "tunnels": [
+        {
+          "remote": "127.0.0.1:5432",
+          "local": "127.0.0.1:5432",
+          "open": true,
+          "name": "progsql"
+        }
+      ]
+    }
+  ]
+}
